@@ -2,12 +2,12 @@
 
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 
-_______       _____________          
-_______       _____________          
-___    |___  _______  /__(_)___  __  
-__  /| |  / / /  __  /__  /__  |/_/  
-_  ___ / /_/ // /_/ / _  / __>  <    
-/_/  |_\__,_/ \__,_/  /_/  /_/|_| 
+    _______       _____________          
+    _______       _____________          
+    ___    |___  _______  /__(_)___  __  
+    __  /| |  / / /  __  /__  /__  |/_/  
+    _  ___ / /_/ // /_/ / _  / __>  <    
+    /_/  |_\__,_/ \__,_/  /_/  /_/|_| 
 
 
 Audix is a PowerShell tool to correctly configure Windows Audit Policies for security monitoring
