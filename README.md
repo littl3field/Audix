@@ -12,7 +12,7 @@
 
 Audix is a PowerShell tool to correctly configure Windows Audit Policies for security monitoring
 
-Audix will allow for a SIMPLE configuration support for Windows Event Audit Policies. Window's Audit Policies are restricted by default. This means that for Blue Teamers, CISO's & people looking to monitor their environment through use of Windows Event Logs, must configure the audit policy settings to provide more advanced logging. 
+Audix will allow for a SIMPLE to use configuration tool to support for Windows Event Audit Policies. Window's Audit Policies are restricted by default. This means that for Blue Teamers, CISO's & people looking to monitor their environment through use of Windows Event Logs, must configure the audit policy settings to provide more advanced logging. 
 
 This utility, aims to capture the current audit policy setting, perform a backup of it (incase a restore to previous state is required) and apply a more advanced Audit Policy setting to allow for better detection capability. 
 
