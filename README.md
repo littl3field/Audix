@@ -12,7 +12,7 @@ Some examples of enabled policy settings that Audix will enable:
 Event ID: 4698-4702	(A scheduled task was created/updated/disabled)
 Event ID: 4688	(A new process has been created.)
 
-#### Running Audix
+### Running Audix
 
 Git Clone the repo
 ```
