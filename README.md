@@ -11,6 +11,7 @@ This utility, aims to capture the current audit policy setting, perform a backup
 Some examples of enabled policy settings that Audix will enable:
 
 -Event ID: 4698-4702	(A scheduled task was created/updated/disabled)
+
 -Event ID: 4688	(A new process has been created.)
 
     _______       _____________          
