@@ -9,8 +9,9 @@ Audix will allow for the SIMPLE configuration of Windows Event Audit Policies. W
 This utility, aims to capture the current audit policy setting, perform a backup of it (incase a restore to previous state is required) and apply a more advanced Audit Policy setting to allow for better detection capability. 
 
 Some examples of enabled policy settings that Audix will enable:
-Event ID: 4698-4702	(A scheduled task was created/updated/disabled)
-Event ID: 4688	(A new process has been created.)
+
+-Event ID: 4698-4702	(A scheduled task was created/updated/disabled)
+-Event ID: 4688	(A new process has been created.)
 
     _______       _____________          
     _______       _____________          
