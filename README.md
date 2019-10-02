@@ -33,4 +33,3 @@ Navigate to the folder and execute the command in your terminal. You must ensure
     __  /| |  / / /  __  /__  /__  |/_/  
     _  ___ / /_/ // /_/ / _  / __>  <    
     /_/  |_\__,_/ \__,_/  /_/  /_/|_| 
-    @Litt3field
