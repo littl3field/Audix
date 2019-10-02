@@ -12,6 +12,13 @@ Some examples of enabled policy settings that Audix will enable:
 Event ID: 4698-4702	(A scheduled task was created/updated/disabled)
 Event ID: 4688	(A new process has been created.)
 
+    _______       _____________          
+    _______       _____________          
+    ___    |___  _______  /__(_)___  __  
+    __  /| |  / / /  __  /__  /__  |/_/  
+    _  ___ / /_/ // /_/ / _  / __>  <    
+    /_/  |_\__,_/ \__,_/  /_/  /_/|_| 
+
 ### Running Audix
 
 Git Clone the repo
@@ -26,10 +33,3 @@ Navigate to the folder and execute the command in your terminal. You must ensure
 
 - Add restore option
 - Add Script for deploying at scale
-
-    _______       _____________          
-    _______       _____________          
-    ___    |___  _______  /__(_)___  __  
-    __  /| |  / / /  __  /__  /__  |/_/  
-    _  ___ / /_/ // /_/ / _  / __>  <    
-    /_/  |_\__,_/ \__,_/  /_/  /_/|_|  
