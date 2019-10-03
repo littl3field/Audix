@@ -8,9 +8,7 @@ Audix will allow for the SIMPLE configuration of Windows Event Audit Policies. W
 
 This utility, aims to capture the current audit policy setting, perform a backup of it (incase a restore to previous state is required) and apply a more advanced Audit Policy setting to allow for better detection capability. 
 
-These settings will only change the local security policy.  It is best to set these in Group Policy default profile so all systems get the same settings.  
-
-**Please note, for systems joined to a domain, these settings may be altered as a GPO force will override** (I'm working on a GPO script for this)
+**Please note: This tool will only change the local security policy.  It is best to set these in Group Policy default profile so all systems get the same settings. If the GPO profile is not changed to meet these settings a GPO force will override** (I'm working on a GPO script for this)
 
 Some examples of enabled policy settings that Audix will enable:
 
