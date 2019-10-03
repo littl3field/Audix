@@ -8,8 +8,6 @@ Audix will allow for the SIMPLE configuration of Windows Event Audit Policies. W
 
 This utility, aims to capture the current audit policy setting, perform a backup of it (incase a restore to previous state is required) and apply a more advanced Audit Policy setting to allow for better detection capability. 
 
-*Please remember to set "Enforce audit policy subcategory setting" to enabled, top-level settings will over ride if not. (I'm working on enforcing this within the script itself)*
-
 Some examples of enabled policy settings that Audix will enable:
 
 -Event ID: 4698-4702	(A scheduled task was created/updated/disabled)
@@ -37,6 +35,6 @@ Navigate to the folder and execute the command in your terminal. You must ensure
 
 - **I will be adding these settings as a priority**: 
     - Increase logging size limit
-    - Enforce audit policy subcategory setting
+    - Enforce audit policy subcategory setting  ✓ (DONE)
 - Add restore option
 - Add Script for deploying at scale
