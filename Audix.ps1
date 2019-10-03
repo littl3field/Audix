@@ -267,7 +267,7 @@ function RunAuditPolicyChange
         )
     
     foreach ($policy in $argumentList) {
-        Start-Sleep -Seconds 2
+        Start-Sleep -Seconds 1
         $command = "auditpol.exe /set /subcategory:"
         $join = $command + $policy
         (iex $join) |
@@ -293,10 +293,8 @@ function AddSCNoApplyLegacy
     $REG_DWORD = "DWORD"
 
     New-ItemProperty -Path $LSARegistryPath -Name $SCENoApply -Value $value -PropertyType $REG_DWORD
-    Get-ItemProperty $LSARegistryPath
 
     }
-
 
 #------------------------------------------------------------------------
 # Ask user if they would like to perform the audit policy change
@@ -312,4 +310,33 @@ if ($confirmation -eq 'y') {
     AddSCNoApplyLegacy
 }
     else {Write-Host -ForegroundColor Cyan "[INFO] The current audit policy will NOT be changed"
+            }
+
+#------------------------------------------------------------------------
+# Set Security log retention to 7 days 
+#------------------------------------------------------------------------
+
+function SecurityEventLoggingSize
+{
+    [CmdletBinding()]
+    param (
+        )
+    Start-Sleep -Seconds 1
+    Limit-EventLog -LogName Security -OverflowAction OverwriteOlder -RetentionDays 7
+
+    }
+
+#------------------------------------------------------------------------
+# Ask user for logging size limit
+#------------------------------------------------------------------------
+
+Write-Host -ForegroundColor Cyan "`n[INFO] Would you like to set the Security logging retention to 7 days (Recommended)? (y/n)"
+$confirmation = Read-Host 
+if ($confirmation -eq 'y') {
+    Write-Host -ForegroundColor Cyan "[INFO] Setting logging size limit to 7 days"
+    Start-Sleep -Seconds 1
+    SecurityEventLoggingSize
+  
+}
+    else {Write-Host -ForegroundColor Cyan "[INFO] The logging retention will NOT be changed"
             }
