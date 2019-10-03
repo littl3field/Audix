@@ -8,6 +8,9 @@ Audix will allow for the SIMPLE configuration of Windows Event Audit Policies. W
 
 This utility, aims to capture the current audit policy setting, perform a backup of it (incase a restore to previous state is required) and apply a more advanced Audit Policy setting to allow for better detection capability. 
 
+**Please note, these settings may be altered if GPO settings override* 
+(I'm working on a GPO script for this)
+
 Some examples of enabled policy settings that Audix will enable:
 
 -Event ID: 4698-4702	(A scheduled task was created/updated/disabled)
