@@ -267,7 +267,7 @@ function RunAuditPolicyChange
         )
     
     foreach ($policy in $argumentList) {
-        Start-Sleep -Seconds 0.1
+        Start-Sleep -Seconds 2
         $command = "auditpol.exe /set /subcategory:"
         $join = $command + $policy
         (iex $join) |
@@ -275,6 +275,28 @@ function RunAuditPolicyChange
 
         }
     }
+
+#------------------------------------------------------------------------
+# Force Advance Audit Policy by applying SCENoApply Regkey
+#------------------------------------------------------------------------
+
+function AddSCNoApplyLegacy
+{
+    [CmdletBinding()]
+    param (
+        )
+    Start-Sleep -Seconds 2
+    $LSARegistryPath = "HKLM:\SYSTEM\CurrentControlSet\Control\Lsa"
+    $Name = "Version"
+    $value = "1"
+    $SCENoApply = "SCENoApplyLegacyAuditPolicy"
+    $REG_DWORD = "DWORD"
+
+    New-ItemProperty -Path $LSARegistryPath -Name $SCENoApply -Value $value -PropertyType $REG_DWORD
+    Get-ItemProperty $LSARegistryPath
+
+    }
+
 
 #------------------------------------------------------------------------
 # Ask user if they would like to perform the audit policy change
@@ -286,6 +308,8 @@ if ($confirmation -eq 'y') {
     Write-Host -ForegroundColor Cyan "[INFO] Running Audit Policy Changes"
     Start-Sleep -Seconds 0.1
     RunAuditPolicyChange
+    Write-Host -ForegroundColor Cyan "`n[INFO] Forcing Advanced Audit Policy setting"
+    AddSCNoApplyLegacy
 }
     else {Write-Host -ForegroundColor Cyan "[INFO] The current audit policy will NOT be changed"
             }
