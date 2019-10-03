@@ -8,7 +8,7 @@ Audix will allow for the SIMPLE configuration of Windows Event Audit Policies. W
 
 This utility, aims to capture the current audit policy setting, perform a backup of it (incase a restore to previous state is required) and apply a more advanced Audit Policy setting to allow for better detection capability. 
 
-_Please remember to set "Enforce audit policy subcategory setting" to enabled, top-level settings will over ride if not. (I'm working on enforcing this within the script itself)
+*Please remember to set "Enforce audit policy subcategory setting" to enabled, top-level settings will over ride if not. (I'm working on enforcing this within the script itself)*
 
 Some examples of enabled policy settings that Audix will enable:
 
