@@ -39,4 +39,4 @@ Navigate to the folder and execute the command in your terminal. You must ensure
     - Increase logging size limit ✓ (DONE)
     - Enforce audit policy subcategory setting  ✓ (DONE)
 - Add restore option
-- Add Script for deploying at scale
+- GPO Setting Configuration
