@@ -1,5 +1,11 @@
 # Audix
-
+    _______       _____________          
+    _______       _____________          
+    ___    |___  _______  /__(_)___  __  
+    __  /| |  / / /  __  /__  /__  |/_/  
+    _  ___ / /_/ // /_/ / _  / __>  <    
+    /_/  |_\__,_/ \__,_/  /_/  /_/|_| 
+    
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 
 **Audix** is a PowerShell tool to correctly configure Windows Audit Policies for security monitoring.
@@ -16,12 +22,6 @@ Some examples of enabled policy settings that Audix will enable:
 
 -Event ID: 4688	(A new process has been created.)
 
-    _______       _____________          
-    _______       _____________          
-    ___    |___  _______  /__(_)___  __  
-    __  /| |  / / /  __  /__  /__  |/_/  
-    _  ___ / /_/ // /_/ / _  / __>  <    
-    /_/  |_\__,_/ \__,_/  /_/  /_/|_| 
 
 ### Running Audix
 
