@@ -1,7 +1,3 @@
-# Audix
-
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
-
     _______       _____________          
     _______       _____________          
     ___    |___  _______  /__(_)___  __  
@@ -9,6 +5,8 @@
     _  ___ / /_/ // /_/ / _  / __>  <    
     /_/  |_\__,_/ \__,_/  /_/  /_/|_| 
     is a PowerShell tool to quickly configure the Windows Event Audit Policies for security monitoring. 
+
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 
 **Please note: This tool will only change the local security policy.  It is best to use these in Group Policy default profile so all systems get the same settings. If the GPO profile is not changed to meet these settings, a GPO force will override it.** 
 
