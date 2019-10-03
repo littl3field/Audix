@@ -10,11 +10,11 @@
     /_/  |_\__,_/ \__,_/  /_/  /_/|_| 
     is a PowerShell tool to quickly configure the Windows Event Audit Policies for security monitoring. 
 
+**Please note: This tool will only change the local security policy.  It is best to set these in Group Policy default profile so all systems get the same settings. If the GPO profile is not changed to meet these settings a GPO force will override** 
+
 Audix will allow for the SIMPLE configuration of Windows Event Audit Policies. Window's Audit Policies are restricted by default. This means that for Blue Teamers, CISO's & people looking to monitor their environment through use of Windows Event Logs, must configure the audit policy settings to provide more advanced logging. 
 
-This utility, aims to capture the current audit policy setting, perform a backup of it (incase a restore to previous state is required) and apply a more advanced Audit Policy setting to allow for better detection capability. 
-
-**Please note: This tool will only change the local security policy.  It is best to set these in Group Policy default profile so all systems get the same settings. If the GPO profile is not changed to meet these settings a GPO force will override** (I'm working on a GPO script for this)
+This utility, aims to capture the current audit policy setting, perform a backup of it (incase a restore to previous state is required) and apply a more advanced Audit Policy setting to allow for better detection capability. In addition, it will enforce audit policy subcategories to ensure that these advance setting persist. There is also a setting to adjust the logging size limit. 
 
 Some examples of enabled policy settings that Audix will enable:
 
