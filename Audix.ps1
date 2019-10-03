@@ -20,22 +20,18 @@ function ValAdmin
 
     # Check against the generic administrator role (language neutral).
     $AdministratorRole = [Security.Principal.WindowsBuiltInRole]::Administrator
-
     # Get the current user identity
     $CurrentWindowsPrincipal = [Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()
-
     # Output error if script not ran with administrator role
     if ($CurrentWindowsPrincipal.IsInRole($AdministratorRole) -eq $false)
     { 
     Write-Host -ForegroundColor Cyan "`n [ERROR] You are NOT a local administrator.  Run this script after logging on with a local administrator account."
     }
-
     # Output success if script ran with administrator role
     if ($CurrentWindowsPrincipal.IsInRole($AdministratorRole) -eq $true) 
     {
     Write-Host -ForegroundColor Cyan "`n [SUCCESS] Script is running with a local admin account."
     }
-
     # Return value
     return $CurrentWindowsPrincipal.IsInRole($AdministratorRole)
 
