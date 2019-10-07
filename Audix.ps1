@@ -20,18 +20,22 @@ function ValAdmin
 
     # Check against the generic administrator role (language neutral).
     $AdministratorRole = [Security.Principal.WindowsBuiltInRole]::Administrator
+
     # Get the current user identity
     $CurrentWindowsPrincipal = [Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()
+
     # Output error if script not ran with administrator role
     if ($CurrentWindowsPrincipal.IsInRole($AdministratorRole) -eq $false)
     { 
     Write-Host -ForegroundColor Cyan "`n [ERROR] You are NOT a local administrator.  Run this script after logging on with a local administrator account."
     }
+
     # Output success if script ran with administrator role
     if ($CurrentWindowsPrincipal.IsInRole($AdministratorRole) -eq $true) 
     {
     Write-Host -ForegroundColor Cyan "`n [SUCCESS] Script is running with a local admin account."
     }
+
     # Return value
     return $CurrentWindowsPrincipal.IsInRole($AdministratorRole)
 
@@ -199,7 +203,6 @@ if ($confirmation -eq 'y') {
 
 #------------------------------------------------------------------------
 # Perform Audit Policy Change
-# Credit: @cyb3rops
 #------------------------------------------------------------------------
 
 $argumentList= @(
@@ -264,7 +267,7 @@ function RunAuditPolicyChange
         )
     
     foreach ($policy in $argumentList) {
-        Start-Sleep -Seconds 1
+        Start-Sleep -Seconds 0.5
         $command = "auditpol.exe /set /subcategory:"
         $join = $command + $policy
         (iex $join) |
@@ -294,6 +297,27 @@ function AddSCNoApplyLegacy
     }
 
 #------------------------------------------------------------------------
+# Add ProcessCreationtoIncludeCmdLine_Enabled
+#------------------------------------------------------------------------
+
+function ProcessCreationCmd
+{
+    [CmdletBinding()]
+    param (
+        )
+    Start-Sleep -Seconds 2
+    $AuditRegistryPath = "HKLM:\software\microsoft\windows\currentversion\policies\system\audit"
+    $Name = "Version"
+    $value = "1"
+    $ProcessCreation = "ProcessCreationIncludeCmdLine_Enabled"
+    $REG_DWORD = "DWORD"
+
+    New-ItemProperty -Path $AuditRegistryPath -Name $ProcessCreation -Value $value -PropertyType $REG_DWORD
+
+    }
+
+
+#------------------------------------------------------------------------
 # Ask user if they would like to perform the audit policy change
 #------------------------------------------------------------------------
 
@@ -305,6 +329,8 @@ if ($confirmation -eq 'y') {
     RunAuditPolicyChange
     Write-Host -ForegroundColor Cyan "`n[INFO] Forcing Advanced Audit Policy setting"
     AddSCNoApplyLegacy
+    Write-Host -ForegroundColor Cyan "`n[INFO] Forcing Process Commandline setting"
+    ProcessCreationCmd
 }
     else {Write-Host -ForegroundColor Cyan "[INFO] The current audit policy will NOT be changed"
             }
@@ -336,4 +362,88 @@ if ($confirmation -eq 'y') {
   
 }
     else {Write-Host -ForegroundColor Cyan "[INFO] The logging retention will NOT be changed"
+            }
+
+#------------------------------------------------------------------------
+# Enable PowerShell logging
+#------------------------------------------------------------------------
+
+function PowerShellLogging
+{
+    [CmdletBinding()]
+    param (
+        )
+    
+    Start-Sleep -Seconds 2
+
+    #Wow64 add
+    REG ADD HKLM\SOFTWARE\Wow6432Node\Policies\Microsoft\Windows\PowerShell /v EnableScripts /t REG_DWORD /d 1 /f
+    REG ADD HKLM\SOFTWARE\Wow6432Node\Policies\Microsoft\Windows\PowerShell /v ExecutionPolicy /t REG_SZ /d RemoteSigned /f
+
+    #Reg add for enabling scripting
+    REG ADD HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell /v EnableScripts /t REG_DWORD /d 1 /f
+    
+    Start-Sleep -Seconds 1
+    
+    #Set rest of settings
+    REG ADD HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging /v EnableModuleLogging /t REG_DWORD /d 1 /f
+    REG ADD HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging /v EnableScriptBlockLogging /t REG_DWORD /d 1 /f
+    REG ADD HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription /v EnableInvocationHeader /t REG_DWORD /d 1 /f
+    REG ADD HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription /v EnableTranscripting /t REG_DWORD /d 1 /f
+
+    }
+
+#------------------------------------------------------------------------
+# As user if they would like to enable Powershell logging
+#------------------------------------------------------------------------
+
+Write-Host -ForegroundColor Cyan "`n[INFO] Would you like to enable PowerShell Logging? (y/n)"
+$confirmation = Read-Host 
+if ($confirmation -eq 'y') {
+    Write-Host -ForegroundColor Cyan "[INFO] Configuring Powershell Logging"
+    Start-Sleep -Seconds 1
+    PowerShellLogging
+    
+}
+    else {Write-Host -ForegroundColor Cyan "[INFO] PowerShell Logging WON'T be enabled"
+            }
+
+
+#------------------------------------------------------------------------
+# PowerShell Transcript Output
+#------------------------------------------------------------------------
+
+function PowerShellTranscript
+{
+    [CmdletBinding()]
+    param (
+    [Parameter(Mandatory=$True,ValueFromPipeline, HelpMessage = 'You need to provide a valid filepath for the PowerShell Transcript File. Example C:\Users\admin\Desktop')]
+    [string]$PSTranscriptPath
+        )
+
+    $validatebackup = Test-Path $PSTranscriptPath
+    Start-Sleep -Seconds 0.5
+    If ($validatebackup -eq $true) {
+    Write-Host -ForegroundColor Cyan "`n[SUCCESS] $PSTranscriptPath is a valid filepath."
+    Write-Host -ForegroundColor Cyan "[INFO] Adding the transcript filepath output to the Registry output directory"
+    REG ADD HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription /v OutputDirectory /t REG_SZ /d $PSTranscriptPath
+    }
+        else
+            {Write-Host -ForegroundColor Cyan "[ERROR] $PSTranscriptPath is not valid, please define a valid filepath. Example: C:\Users\admin\Desktop"}
+
+    }
+
+#------------------------------------------------------------------------
+# As user if they would like to enable Powershell logging
+#------------------------------------------------------------------------
+
+Write-Host -ForegroundColor Cyan "`n[INFO] Would you like to output a PowerShell Transcript? (y/n)"
+$confirmation = Read-Host 
+if ($confirmation -eq 'y') {
+    Write-Host -ForegroundColor Cyan "[INFO] Configuring Powershell Transcript"
+    Start-Sleep -Seconds 1
+    PowerShellTranscript
+    
+}
+    else {Write-Host -ForegroundColor Cyan "[INFO] PowerShell Logging WON'T be enabled"
             }
