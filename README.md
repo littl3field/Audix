@@ -4,7 +4,7 @@
     __  /| |  / / /  __  /__  /__  |/_/  
     _  ___ / /_/ // /_/ / _  / __>  <    
     /_/  |_\__,_/ \__,_/  /_/  /_/|_| 
-    is a PowerShell tool to quickly configure the Windows Event Audit Policies for security monitoring & incident response. 
+    is a PowerShell tool to quickly configure the Windows Event Audit Policies for monitoring & incident response. 
 
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE) 
 
