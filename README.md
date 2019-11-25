@@ -10,7 +10,7 @@
 
 **Please note: This tool will only change the local security policy.  If applied to a host with a GPO setting, it is best to use the same settings in a Group Policy default profile so all systems get the same config. If the GPO profile is not changed to meet these settings, a GPO force will override it.** 
 
-Audix will allow for the SIMPLE configuration of Windows Event Audit Policies. Window's Audit Policies are restricted by default. This means that for Blue Teamers, CISO's & people looking to monitor their environment through use of Windows Event Logs, must configure the audit policy settings to provide more advanced logging. 
+Audix will allow for the SIMPLE configuration of Windows Event Audit Policies. Window's Audit Policies are restricted by default. This means that for Incident Responders, Blue Teamers, CISO's & people looking to monitor their environment through use of Windows Event Logs, must configure the audit policy settings to provide more advanced logging. 
 
 This utility, aims to capture the current audit policy setting, perform a backup of it (incase a restore to previous state is required) and apply a more advanced Audit Policy setting to allow for better detection capability. In addition, it will enforce audit policy subcategories to ensure that these advance setting persist. There is also a setting to adjust the logging size limit. 
 
